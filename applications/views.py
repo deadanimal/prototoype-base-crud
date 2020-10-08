@@ -14,17 +14,17 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 from .models import (
-    Trainer, 
+    Training, 
 )
 
 from .serializers import (
-    TrainerSerializer, 
+    TrainingSerializer, 
 )
 
 
-class TrainerViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
-    queryset = Trainer.objects.all()
-    serializer_class = TrainerSerializer
+class TrainingViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    queryset = Training.objects.all()
+    serializer_class = TrainingSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
@@ -33,23 +33,6 @@ class TrainerViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        user = self.request.user
-      
-        return queryset  
+        queryset = Training.objects.all()
+        return queryset    
           
-
-    @action(methods=['GET'], detail=True)
-    def activate(self, request, *args, **kwargs):
-        Trainer = self.get_object()
-        Trainer.active = True
-
-        serializer =  TrainerSerializer(Trainer)
-        return Response(serializer.data)   
-
-    @action(methods=['GET'], detail=True)
-    def deactivate(self, request, *args, **kwargs):
-        Trainer = self.get_object()
-        Trainer.active = False
-
-        serializer =  TrainerSerializer(Trainer)
-        return Response(serializer.data)        

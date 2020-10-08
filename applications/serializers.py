@@ -12,12 +12,12 @@ from django.utils.timezone import now
 
 
 from .models import (
-    Trainer
+    Training
 )
 
 
-class TrainerSerializer(serializers.ModelSerializer):
+class TrainingSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Trainer
+        model = Training
         fields = '__all__'
