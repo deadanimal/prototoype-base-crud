@@ -8,7 +8,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 from core.helpers import PathAndRename
 
-from users.models import CustomUser, Trainer, Assessor
+from users.models import CustomUser, Trainer, Assessor, UserTraining, ApplicationTrainer
 
 
 class Assessment(models.Model):
@@ -179,3 +179,17 @@ class Representative(models.Model):
 
     def __str__(self):
         return self.name                  
+
+class SupportingDocument(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(blank=True, max_length=255)
+
+    assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE, null=True)
+    training = models.ForeignKey(UserTraining, on_delete=models.CASCADE, null=True)
+    application = models.ForeignKey(ApplicationTrainer, on_delete=models.CASCADE, null=True)
+
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)  
+
+    def __str__(self):
+        return self.name                      

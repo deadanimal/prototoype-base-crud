@@ -9,7 +9,6 @@ from django.db import models
 
 
 
-
 class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ic_number = models.CharField(blank=True, max_length=255)
@@ -126,3 +125,37 @@ class UserSettings(models.Model):
 
     def __str__(self):
         return self.name            
+
+
+class UserTraining(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(blank=True, max_length=255)
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+    year = models.IntegerField(null=True)
+    place = models.IntegerField(null=True)
+    course = models.CharField(blank=True, max_length=255)
+
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)      
+
+    def __str__(self):
+        return self.name 
+
+
+class ApplicationTrainer(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(blank=True, max_length=255)
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+    status = models.CharField(blank=True, max_length=255)
+    payment = models.CharField(blank=True, max_length=255)
+
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)  
+
+    def __str__(self):
+        return self.name      
+
