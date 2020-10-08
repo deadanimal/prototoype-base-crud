@@ -40,32 +40,10 @@ organisations_router = router.register(
     'organisations', OrganisationViewSet
 )
 
-"""
-organisation_types_router = router.register(
-    'organisation-types', OrganisationTypeViewSet
-)
-"""
 
 users_router = router.register(
     'users', CustomUserViewSet
 )
-
-from accounts.views import (AccountViewSet)
-from notifications.views import (NotificationViewSet)
-
-
-accounts_router = router.register(
-    'accounts', AccountViewSet
-)
-
-
-
-notifications_router = router.register(
-    'notifications', NotificationViewSet
-)
-
-
-
 
 
 

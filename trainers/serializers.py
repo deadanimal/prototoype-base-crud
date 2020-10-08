@@ -12,12 +12,12 @@ from django.utils.timezone import now
 
 
 from .models import (
-    Notification
+    Trainer
 )
 
 
-class NotificationSerializer(serializers.ModelSerializer):
+class TrainerSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Notification
+        model = Trainer
         fields = '__all__'

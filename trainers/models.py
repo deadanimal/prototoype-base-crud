@@ -9,7 +9,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from core.helpers import PathAndRename
 
 
-class Organisation(models.Model):
+class Trainer(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)

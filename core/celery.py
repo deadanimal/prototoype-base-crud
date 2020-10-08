@@ -7,9 +7,9 @@ from celery.schedules import crontab
 from django.conf import settings
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'baseapi.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-app = Celery('baseapi')
+app = Celery('core')
 app.config_from_object('django.conf:settings')
 #app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
